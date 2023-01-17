@@ -19,16 +19,37 @@ function Main() {
   }
   
 
+  // Conditional Rendering with "Element Variables"
+  let titleMessage;
+  if(moviesArr.length > 0){
+    titleMessage = <h2>Current number of movies: {moviesArr.length}</h2>;
+  } else {
+    titleMessage = <h2>Sorry, no movies to display</h2>
+  }
+
+
   return (
     <div className="Main">
 
-      <h2>Current number of movies: {moviesArr.length}</h2>
+      {titleMessage}
 
       {moviesArr.map( (movieDetails) => {
         return(
           <div key={movieDetails.id} className="card movie">
             <p>{movieDetails.title}</p>
+
+            {/*  Conditional Rendering with "Ternary Operator"  */}
+            { movieDetails.imgURL 
+              ? <img src={movieDetails.imgURL} alt="" /> 
+              : <img src="https://via.placeholder.com/182x268" />
+            }
+
+
             <p>Rating: {movieDetails.rating}</p>
+
+            {/*  Conditional Rendering with "Logical && Operator"  */}
+            {movieDetails.rating > 8 && <p className="badge">RECOMMENDED</p>}
+
             <button onClick={() => {deleteMovie(movieDetails.id)}}>Delete this movie</button>
           </div>
         );
