@@ -18,11 +18,11 @@ function App() {
   
 
 
-  const deleteMovie = (idOfTheMovieToDelete) => {
+  const deleteMovie = (movieTitle) => {
 
     //calc the new list of movies
     const newListOfMovies = moviesArr.filter((movie) => {
-      return movie.id !== idOfTheMovieToDelete;
+      return movie.title !== movieTitle;
     });
 
     //update state
@@ -64,7 +64,7 @@ function App() {
           <input 
             type="text" 
             name="title" 
-            required="true"
+            required={true}
             placeholder="enter the title" 
             value={title} 
             onChange={(e) => { setTitle(e.target.value) }} />
@@ -75,7 +75,7 @@ function App() {
           <input 
             type="number" 
             name="rating" 
-            required="true"
+            required={true}
             min="1"
             max="10"
             placeholder="5" 
