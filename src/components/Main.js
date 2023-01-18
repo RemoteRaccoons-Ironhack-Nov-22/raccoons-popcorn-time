@@ -19,10 +19,10 @@ function Main(props) {
 
       {/* {titleMessage} */}
 
-      {props.moviesArr.map( (movieObj) => {
+      {props.moviesArr.map( (movieObj, index) => {
         return(
           <Movie 
-            key={movieObj.id} 
+            key={index} 
             movieDetails={movieObj} 
             callbackToDelete={props.callbackToDelete} />
         );
