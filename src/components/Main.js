@@ -1,11 +1,13 @@
 import { useState } from "react";
 import moviesFromJson from "../data/movies.json"
 import "./Main.css"
+import Movie from "./Movie";
 
 function Main() {
 
 
   const [moviesArr, setMoviesArr] = useState(moviesFromJson);
+
 
   const deleteMovie = (idOfTheMovieToDelete) => {
 
@@ -33,25 +35,12 @@ function Main() {
 
       {titleMessage}
 
-      {moviesArr.map( (movieDetails) => {
+      {moviesArr.map( (movieObj) => {
         return(
-          <div key={movieDetails.id} className="card movie">
-            <p>{movieDetails.title}</p>
-
-            {/*  Conditional Rendering with "Ternary Operator"  */}
-            { movieDetails.imgURL 
-              ? <img src={movieDetails.imgURL} alt="" /> 
-              : <img src="https://via.placeholder.com/182x268" />
-            }
-
-
-            <p>Rating: {movieDetails.rating}</p>
-
-            {/*  Conditional Rendering with "Logical && Operator"  */}
-            {movieDetails.rating > 8 && <p className="badge">RECOMMENDED</p>}
-
-            <button onClick={() => {deleteMovie(movieDetails.id)}}>Delete this movie</button>
-          </div>
+          <Movie 
+            key={movieObj.id} 
+            movieDetails={movieObj} 
+            callbackToDelete={deleteMovie} />
         );
       })}
 
